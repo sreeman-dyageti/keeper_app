@@ -16,31 +16,35 @@ function handleInput(e){
   setNote((prev)=>{
   return {...prev, [name]:value}
   })
-  console.log(input);
   
 }
 function addNote(){
   setAllNotes((prev)=>{ return [...prev, note]});
-  console.log(note);
+
+  setNote({
+    title:"",
+    content:""
+  });
 }
 
 return (
   <div className="app">
     <Header />
     <main>  
-      {AllNotes.map((note) => {
+        <div className="form">
+           <input onChange={handleInput} type="text" name="title" placeholder="title" value={note.title}/>
+          <input onChange={handleInput} type="text" name="content" placeholder="content" value={note.content} />
+          <button onClick={addNote}>Add Me</button>
+        </div> 
+   <div className="notes-container">     
+         {AllNotes.map((note) => {
           return <Note 
           key={note.key}
           title={note.title}
           content={note.content}
           />
-        })} 
-
-        <div className="note">
-          <input onChange={handleInput} type="text" name="title" placeholder="title" value={note.title}/>
-          <input onChange={handleInput} type="text" name="content" placeholder="content" value={note.content} />
-          <button onClick={addNote}>Add Me</button>
-        </div>
+        })}
+      </div>
     </main>
     <Footer />
   </div>
