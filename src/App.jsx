@@ -11,7 +11,7 @@ export default function App() {
       <main>  
        {notes.map((note) => {
             return <Note 
-            key={note.id}
+            key={note.key}
             title={note.title}
             content={note.content}
             />
