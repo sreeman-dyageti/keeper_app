@@ -3,39 +3,23 @@ import Header from "./header";
 import Footer from "./footer";
 import Note from "./note";
 import notes from "../notes";
+import InputText from "./inputText";
 
 export default function App() {
-  const [note, setNote] = useState({
-    title:"",
-    content:""
-  });
-  const [AllNotes, setAllNotes]=useState([]);
 
-function handleInput(e){
-  const {name, value}= e.target;
-  setNote((prev)=>{
-  return {...prev, [name]:value}
-  })
-  
-}
-function addNote(){
-  setAllNotes((prev)=>{ return [...prev, note]});
+const [AllNotes, setAllNotes]=useState([]);
 
-  setNote({
-    title:"",
-    content:""
-  });
+function addNote(Input){
+  setAllNotes((prev)=>{ return [...prev, Input]});
 }
 
 return (
   <div className="app">
     <Header />
     <main>  
-        <div className="form">
-           <input onChange={handleInput} type="text" name="title" placeholder="title" value={note.title}/>
-          <input onChange={handleInput} type="text" name="content" placeholder="content" value={note.content} />
-          <button onClick={addNote}>Add Me</button>
-        </div> 
+
+        <InputText onAdd={addNote} />
+
    <div className="notes-container">     
          {AllNotes.map((note) => {
           return <Note 
