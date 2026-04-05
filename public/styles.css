@@ -35,15 +35,7 @@ footer {
 footer p {
   color: #ccc;
 }
-.note {
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
-  padding: 10px;
-  width: 240px;
-  margin: 16px;
-  float: left;
-}
+
 .note h1 {
   font-size: 1.1em;
   margin-bottom: 6px;
@@ -104,4 +96,55 @@ footer p {
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
+}
+
+.note {
+  position: relative;
+  background: #fff;
+  padding: 16px;
+  width: 240px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 16px;
+  transition: 0.2s ease;
+}
+
+.note:hover {
+  transform: translateY(-5px);
+}
+
+/* Delete Button */
+.delete-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+
+  width: 32px;
+  height: 32px;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(52, 48, 48, 0.4);
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.delete-btn:hover {
+  background: #e60000;
+  transform: scale(1.1);
+}
+
+/* Click effect */
+.delete-btn:active {
+  transform: scale(0.95);
 }

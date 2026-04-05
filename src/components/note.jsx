@@ -4,9 +4,10 @@ function Note(props){
     return <div className="note">
         <h1>{props.title}</h1>
         <p>{props.content}</p>
-        <button onClick={()=>{
+        <button className="delete-btn"
+        onClick={()=>{
             props.onChecked(props.id);
-        }}>Delete</button>
+        }}>X</button>
     </div>
 }
 
