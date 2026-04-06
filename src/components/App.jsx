@@ -6,38 +6,56 @@ import InputText from "./inputText";
 
 export default function App() {
 
-const [AllNotes, setAllNotes]=useState([]);
+  const [AllNotes, setAllNotes] = useState([]);
+  const [editingId, setEditingId] = useState(null);
 
-function addNote(Input){
-  setAllNotes((prev)=>{ return [...prev, Input]});
-}
+  function addNote(Input) {
+    setAllNotes((prev) => [...prev, Input]);
+  }
 
-function deleteNote(id){
-  setAllNotes((prev)=>{ return prev.filter((item, index)=>{
-    return index !== id;
-  })})
-}
+  function deleteNote(id) {
+    setAllNotes((prev) => prev.filter((_, index) => index !== id));
+  }
 
-return (
-  <div className="app">
-    <Header />
-    <main>  
+  function editNote(id) {
+    setEditingId(id);
+  }
 
-    <InputText onAdd={addNote} />
+  function saveEdit(id, updatedNote) {
+    setAllNotes((prev) =>
+      prev.map((note, index) =>
+        index === id ? updatedNote : note
+      )
+    );
+    setEditingId(null);
+  }
 
-   <div className="notes-container">     
-         {AllNotes.map((note, index) => {
-          return <Note 
-          key={index}
-          id={index}
-          title={note.title}
-          content={note.content}
-          onChecked={deleteNote}
-          />
-        })}
-      </div>
-    </main>
-    <Footer />
-  </div>
-);
+  return (
+    <div className="app">
+      <Header />
+      <main>  
+
+        <InputText onAdd={addNote} />
+
+        <div className="notes-container">     
+          {AllNotes.map((note, index) => {
+            return (
+              <Note 
+                key={index}
+                id={index}
+                title={note.title}
+                content={note.content}
+                onDelete={deleteNote}
+                onEdit={editNote}
+                onSave={saveEdit}
+                isEditing={editingId === index}
+              />
+            );
+          })}
+        </div>
+
+      </main>
+      <Footer />
+    </div>
+  );
 }
