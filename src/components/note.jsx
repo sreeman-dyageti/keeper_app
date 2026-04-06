@@ -53,8 +53,9 @@ function Note(props) {
           <button 
             className="edit-btn"
             onClick={() => props.onEdit(props.id)}
+    
           >
-            Edit
+          🖊
           </button>
 
           <button 
